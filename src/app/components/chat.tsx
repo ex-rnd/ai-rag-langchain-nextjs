@@ -9,7 +9,7 @@ export function Chat() {
     const { messages, input, handleInputChange, handleSubmit } = useChat(
         {
             //api: 'api/chat',
-            api: 'api/ex2',
+            api: 'api/ex3',
             onError: (e) => {
             console.log(e)
         }
