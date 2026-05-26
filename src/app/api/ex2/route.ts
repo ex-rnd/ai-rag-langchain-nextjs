@@ -6,6 +6,8 @@ import {
 import { ChatOpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
 import { HttpResponseOutputParser } from 'langchain/output_parsers';
+//import { RunnableSequence } from "@langchain/core/runnables";
+import { RunnableSequence } from "@langchain/core/runnables";
 
 export const dynamic = 'force-dynamic'
 
@@ -57,7 +59,13 @@ export async function POST(req: Request) {
        */
         const parser = new HttpResponseOutputParser();
 
-        const chain = prompt.pipe(model.bind({ stop: ["?"] })).pipe(parser);
+        //const chain = prompt.pipe(model.bind({ stop: ["?"] })).pipe(parser);
+        const chain = RunnableSequence.from([
+        prompt as any,
+        model as any,
+        parser as any,
+        ]);
+
 
         // Convert the response into a friendly text-stream
         const stream = await chain.stream({

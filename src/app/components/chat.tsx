@@ -1,15 +1,15 @@
 'use client'
 
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { useChat } from "ai/react"
-import { useRef, useEffect } from 'react'
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useChat } from "ai/react";
+import { useRef, useEffect } from 'react';
 
 export function Chat() {
     const { messages, input, handleInputChange, handleSubmit } = useChat(
         {
             //api: 'api/chat',
-            api: 'api/ex3',
+            api: 'api/ex4',
             onError: (e) => {
             console.log(e)
         }
