@@ -69,19 +69,11 @@ export async function POST(req: Request) {
         const prompt = PromptTemplate.fromTemplate(TEMPLATE);
 
         const model = new ChatOpenAI({
-            // apiKey: process.env.OPENAI_API_KEY!,
-            // model: 'gpt-3.5-turbo',
-            // temperature: 0,
-            // streaming: true,
-            // verbose: true,
-            apiKey: "ollama",              // required but ignored
-            model: "mistral",              // must match your Ollama model name
+            apiKey: process.env.OPENAI_API_KEY!,
+            model: 'gpt-3.5-turbo',
             temperature: 0,
             streaming: true,
             verbose: true,
-            configuration: {
-                baseURL: process.env.OLLAMA_URL,   // e.g. http://localhost:11434/v1
-            },
         });
 
         /**
@@ -96,7 +88,7 @@ export async function POST(req: Request) {
                 chat_history: (input) => input.chat_history,
                 context: () => formatDocumentsAsString(docs),
             },
-            prompt,
+            prompt as any,
             model,
             parser,
         ]);
