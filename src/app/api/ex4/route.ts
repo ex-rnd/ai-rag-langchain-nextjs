@@ -69,8 +69,10 @@ export async function POST(req: Request) {
         const prompt = PromptTemplate.fromTemplate(TEMPLATE);
 
         const model = new ChatOpenAI({
-            apiKey: process.env.OPENAI_API_KEY!,
-            model: 'gpt-3.5-turbo',
+            //apiKey: process.env.OPENAI_API_KEY!,
+            // model: 'gpt-3.5-turbo',
+            apiKey: "ollama",  
+            model: 'qwen2.5:0.5b',
             temperature: 0,
             streaming: true,
             verbose: true,

@@ -43,7 +43,7 @@ export async function POST(req: Request) {
             // model: 'gpt-3.5-turbo',
             // temperature: 0.8,
             apiKey: "ollama",              // required but ignored
-            model: "mistral",              // must match your Ollama model name
+            model: "qwen2.5:0.5b",              // must match your Ollama model name
             temperature: 0.8,
             verbose: true,
             configuration: {
