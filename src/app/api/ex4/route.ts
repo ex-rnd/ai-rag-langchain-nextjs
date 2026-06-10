@@ -58,7 +58,7 @@ export async function POST(req: Request) {
 
     const model = new ChatOpenAI({
       apiKey: process.env.OLLAMA_API_KEY,   // now using your JWT
-      model: "qwen2.5:0.5b-instruct",
+      model: "qwen2.5:0.5b",
       temperature: 0,
       streaming: true,
       verbose: true,
