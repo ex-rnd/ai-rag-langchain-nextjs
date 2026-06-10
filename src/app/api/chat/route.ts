@@ -17,14 +17,26 @@ export async function POST(req: Request) {
 
     const prompt = PromptTemplate.fromTemplate("{message}");
 
+    // const model = new ChatOpenAI({
+    //   apiKey: "ollama",
+    //   model: "qwen2.5:0.5b", // or qwen2.5:0.5b-instruct / mistral
+    //   temperature: 0.8,
+    //   configuration: {
+    //     baseURL: process.env.OLLAMA_URL,
+    //   },
+    // });
+
     const model = new ChatOpenAI({
-      apiKey: "ollama",
-      model: "qwen2.5:0.5b", // or qwen2.5:0.5b-instruct / mistral
-      temperature: 0.8,
+      apiKey: process.env.OLLAMA_API_KEY,   // now using your JWT
+      model: "qwen2.5:0.5b-instruct",
+      temperature: 0,
+      streaming: true,
+      verbose: true,
       configuration: {
-        baseURL: process.env.OLLAMA_URL,
+        baseURL: process.env.OLLAMA_URL,    // points to public OpenWebUI endpoint
       },
     });
+
 
     const parser = new HttpResponseOutputParser();
 
