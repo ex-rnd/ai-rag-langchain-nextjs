@@ -33,26 +33,45 @@ This project demonstrates how to build a **production‑ready AI chat interface*
 ---
 
 ## 🛠️ Tech Stack
-- **Python 3.8+**
-- **Streamlit** – UI framework
+- **Next.js 14+ (App Router)**
+- **TypeScript**
+- **LangChain**
+- **Vercel AI SDK (useChat)**
+- **Ollama** (local LLM server)
+- **ShadCN UI**
+- **React Hooks**
+- **Server‑Sent Events (SSE)** for streaming
 - **TensorFlow / Keras** – Deep Learning model
 - **Pandas / NumPy** – Data handling
 - **CSV Dataset** – Obesity data (age, gender, height, weight, BMI, activity level)
 
 ---
 
+
 ## 📂 Project Structure
 ```
-obesity-detector/
-│── model/
-│   └── model.keras                      # Trained DL model
-│── dataset/
-│   └── obesity_data.csv                # Dataset with features
-│── images/
-│   └── logo.png                         # App logo
-│── app.py                               # Streamlit app
-│── requirements.txt                     # Dependencies
-│── README.md                            # Project documentation
+ai-rag-langchain-nextjs/
+│── app/
+│   ├── api/
+│   │   ├── chat/
+│   │   │   └── route.ts          # Main chat endpoint
+│   │   ├── ex1/
+│   │   │   └── route.ts          # Basic streaming example
+│   │   ├── ex2/
+│   │   │   └── route.ts          # Comedian persona + memory
+│   │   ├── ex3/
+│   │   │   └── route.ts          # Pirate persona + verbose dialect
+│   │   └── ex4/
+│   │       └── route.ts          # Clean minimal pipeline
+│   └── page.tsx                  # App entry
+│
+│── components/
+│   └── chat.tsx                  # Chat UI (useChat hook)
+│
+│── public/
+│── package.json
+│── README.md
+
 ```
 
 ---
@@ -61,49 +80,112 @@ obesity-detector/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/obesity-detector.git
-cd obesity-detector
+git clone https://github.com/ex-rnd/ai-rag-langchain-nextjs.git
+cd ai-rag-langchain-nextjs
 ```
 
-2. **Create a virtual environment**
+2. **Install dependencies**
 ```
-python3 -m venv venv
-source venv/bin/activate   # Linux/macOS
-venv\Scripts\activate      # Windows
+npm install
 ```
 
-3. **Install dependencies**
+3. **Install and run Ollama**
+Download Ollama:
+https://ollama.com/download
+
+Then pull a model:
 ```
-pip install -r requirements.txt
+ollama pull qwen2.5:0.5b
+```
+Or Mistral:
+```
+ollama pull mistral
 ```
 
-4. **Run the app**
+4. **Set environment variables**
+Create `.env.local`:
 ```
-streamlit run app.py
+OLLAMA_URL=http://localhost:11434/v1
+```
+
+5. **Set environment variables**
+```
+npm run dev
 ```
 
 ---
+
 
 ## 📊 Usage
-- Launch the app in your browser (default: http://localhost:8501).
-- Enter personal details:
-```
-- Age, Gender, Height, Weight, BMI, Physical Activity Level
-```
-- Click Predict Obesity Level.
-- View:
-```
-- Prediction result (Normal / Underweight / Overweight / Obese)
-- Emoji + message feedback
-- Input summary
-```
+- Open the app at:
+```http://localhost:3000```
+- Type a message in the chat box
+- Watch the AI respond token‑by‑token
+- 
+### 🔀 Switch API Routes
+| Route        | Description               |
+|--------------|---------------------------|
+| `/api/ex1`   | Basic streaming           |
+| `/api/ex2`   | Comedian persona          |
+| `/api/ex3`   | Pirate persona            |
+| `/api/chat`  | Main production route     |
+
 ---
 
-## 🧠 Model Information
-- Algorithm: Deep Learning (TensorFlow/Keras)
-- Training Dataset: Obesity dataset (CSV)
-- Features: Age, Gender, Height, Weight, BMI, Physical Activity Level
-- Accuracy: Depends on dataset and training configuration
+
+## 🧠 How It Works
+- Each API route uses a LangChain pipeline:
+```
+User Message
+   ↓
+PromptTemplate
+   ↓
+ChatOpenAI (Ollama)
+   ↓
+HttpResponseOutputParser
+   ↓
+StreamingTextResponse
+   ↓
+Frontend (useChat)
+
+```
+
+### Example: Persona Prompt (ex2)
+```
+You are a comedian. You have witty replies to user questions.
+
+Current conversation:
+{chat_history}
+
+user: {input}
+assistant:
+
+```
+
+
+
+### Example: Persona Prompt (ex3)
+```
+You are a pirate named Patchy. All responses must be extremely verbose and in pirate dialect.
+
+Current conversation:
+{chat_history}
+
+user: {input}
+assistant:
+
+```
+
+
+### Example: Persona Prompt (ex4)
+```
+{message}
+
+```
+
+
+
+
 
 ---
 
