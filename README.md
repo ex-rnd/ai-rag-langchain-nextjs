@@ -36,7 +36,7 @@ This project demonstrates how to build a **production‑ready AI chat interface*
 - **Next.js 14+ (App Router)**
 - **TypeScript**
 - **LangChain**
-- **Vercel AI SDK (useChat)**
+- **Vercel AI SDK** (useChat)
 - **Ollama** (local LLM server)
 - **ShadCN UI**
 - **React Hooks**
@@ -117,18 +117,17 @@ npm run dev
 
 
 ## 📊 Usage
-- Open the app at:
-```http://localhost:3000```
+- Open the app at: ```http://localhost:3000```
 - Type a message in the chat box
 - Watch the AI respond token‑by‑token
-- 
+
 ### 🔀 Switch API Routes
-| Route        | Description               |
-|--------------|---------------------------|
-| `/api/ex1`   | Basic streaming           |
-| `/api/ex2`   | Comedian persona          |
-| `/api/ex3`   | Pirate persona            |
-| `/api/chat`  | Main production route     |
+  | Route        | Description               |
+  |--------------|---------------------------|
+  | `/api/ex1`   | Basic streaming           |
+  | `/api/ex2`   | Comedian persona          |
+  | `/api/ex3`   | Pirate persona            |
+  | `/api/chat`  | Main production route     |
 
 ---
 
@@ -183,16 +182,13 @@ assistant:
 
 ```
 
-
-
-
-
 ---
 
+
 ## ⚠️ Disclaimer
-- This project is for educational purposes only.
-- It is not a substitute for professional medical advice, diagnosis, or treatment.
-- Always consult a qualified healthcare provider for medical concerns.
+- This project is for educational and experimental purposes.
+- Local LLMs may hallucinate or produce inaccurate information.
+- Always validate outputs before using them in production.
 
 ---
 
@@ -208,11 +204,4 @@ assistant:
 
 ## 📜 License
 - This project is licensed under the MIT License – feel free to use and modify.
-
-
-
-
-
-
-
 
