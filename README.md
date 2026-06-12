@@ -1,7 +1,7 @@
 # 🤖 Next.js LangChain AI Chatbot
 
 A **Next.js + LangChain + Ollama-powered AI chat application** that supports **streaming responses, custom personas, prompt templates**, and local LLMs such as **Qwen, Mistral**, and others via the **OpenAI‑compatible Ollama API**.
----
+<br/>
 This project demonstrates how to build a **production‑ready AI chat interface** using:
 - **Next.js App Router**
 - **LangChain RunnableSequence pipelines**
@@ -123,12 +123,28 @@ npm run dev
 - Watch the AI respond token‑by‑token
 
 ### 🔀 Switch API Routes
-  | Route        | Description               |
-  |--------------|---------------------------|
-  | `/api/ex1`   | Basic streaming           |
-  | `/api/ex2`   | Comedian persona          |
-  | `/api/ex3`   | Pirate persona            |
-  | `/api/chat`  | Main production route     |
+<table align="center">
+  <tr>
+    <th>Route</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>/api/ex1</code></td>
+    <td>Basic streaming</td>
+  </tr>
+  <tr>
+    <td><code>/api/ex2</code></td>
+    <td>Comedian persona</td>
+  </tr>
+  <tr>
+    <td><code>/api/ex3</code></td>
+    <td>Pirate persona</td>
+  </tr>
+  <tr>
+    <td><code>/api/chat</code></td>
+    <td>Main production route</td>
+  </tr>
+</table>
 
 ---
 
